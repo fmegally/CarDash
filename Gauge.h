@@ -4,35 +4,32 @@
 #define Gauge_h
 #include <FL/Fl.H>
 #include <FL/Fl_Widget.H>
-#include <FL/Fl_Window.H>
-#include <FL/Fl_Button.H>
 #include <vector>
-#include <stdint.h>
-#include <iostream>
 
 class Gauge : public Fl_Widget {
 public:
   Gauge(int x, int y, int size, double lower, double upper);
   void setLabel(const char *lbl);
-  
+  void enableMajorLabels(void);
+  void disableMajorLabels(void);
   double value;
 protected:
   void draw();
 private:
-  int size;
   int XCent, YCent;
   int needlePivotSize;
-  double radius;
-  std::vector<double> majorTicks;
-  std::vector<double> minorTicks;
   char *label;
 
+  int size;
+  double radius;
   double angStart, angEnd;
   double valueMin, valueMax;
   double *subRange;
 
+  std::vector<double> majorTicks;
+  std::vector<double> minorTicks;
 
-
+  bool labelMajorTicks;
 };
 
 #endif

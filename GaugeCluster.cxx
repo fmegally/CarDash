@@ -1,18 +1,18 @@
 #include "GaugeCluster.h"
 
 GaugeCluster::GaugeCluster(int X, int Y, int W, int H, const char *L)
-  : Fl_Window(X, Y, W, H, L) {
+  : Fl_Double_Window(X, Y, W, H, L) {
   _GaugeCluster();
 }
 
 GaugeCluster::GaugeCluster(int W, int H, const char *L)
-  : Fl_Window(0, 0, W, H, L) {
+  : Fl_Double_Window(0, 0, W, H, L) {
   clear_flag(16);
   _GaugeCluster();
 }
 
 GaugeCluster::GaugeCluster()
-  : Fl_Window(0, 0, 800, 800, "Gauge Test") {
+  : Fl_Double_Window(0, 0, 800, 800, "Gauge Test") {
   clear_flag(16);
   _GaugeCluster();
 }
@@ -29,7 +29,6 @@ void GaugeCluster::_GaugeCluster() {
   this->when(FL_WHEN_RELEASE);
   g1 = new Gauge(0,400,400,0,8000);
   printf("%d,%d\n",g1->x(),g1->y());
-  g2 = new Gauge(0,0,400,0,7000);
   clear_border();
   end();
 }
