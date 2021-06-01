@@ -9,7 +9,7 @@
 Gauge::Gauge(int x, int y, int size, double lower, double upper)
   : Fl_Widget(x, y, size, size, 0) {
 	this->box(FL_FLAT_BOX);
-	this->color(FL_BACKGROUND_COLOR);
+	this->color(0x00000000);
 	this->selection_color(FL_BACKGROUND_COLOR);
 	this->labeltype(FL_NO_LABEL);
 	this->when(FL_WHEN_RELEASE);
@@ -46,8 +46,14 @@ void Gauge::draw() {
 	int needlePivotSize = size / 8;
 	
 	//draw background
-	fl_color(FL_GRAY0);
+	fl_color(0x00000000);
 	fl_pie(x(),y(),size,size,0,360);
+
+	fl_color(0xFF000000);
+	fl_pie(x()+0.5*size-0.325*size,y()+0.5*size - 0.325*size,size*0.65,size*0.65,5,-45);
+
+	fl_color(0x00000000);
+	fl_pie(x()+0.5*size-0.30*size,y()+0.5*size - 0.30*size,size*0.6,size*0.6,5,-45);
 
 	//draw needle pivot
 	fl_color(0x50505000);
@@ -64,7 +70,7 @@ void Gauge::draw() {
 	fl_line_style(FL_SOLID,2);
 
 	fl_push_matrix();
-	fl_color(0xF0F00000);
+	fl_color(0xFFFFFF00);
 	fl_translate(XCent, YCent);
 	fl_translate(x(),y());
 	fl_rotate(angStart);
@@ -75,7 +81,7 @@ void Gauge::draw() {
 		{
 			char buff[10];
 			int dx, dy;
-			sprintf(buff,"%.0f",i);
+			sprintf(buff,"%.0f",i/1000);
 			fl_measure(buff,dx, dy);
 			double dR = 1.25 * sqrt(pow(0.5*dx,2) + pow(0.5*dy,2));
 			double a = map (i, valueMin, valueMax ,angStart ,angEnd)*(M_PI / 180);
@@ -98,7 +104,7 @@ void Gauge::draw() {
 	
 	//draw minor ticks
 	fl_push_matrix();
-	fl_color(0xA0A00000);
+	fl_color(0xA0A0A000);
 	fl_translate(XCent, YCent);
 	fl_translate(x(),y());
 	fl_rotate(angStart);

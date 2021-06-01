@@ -19,7 +19,7 @@ GaugeCluster::GaugeCluster()
 
 void GaugeCluster::_GaugeCluster() {
   int i, nFonts;
-  int ssfont;
+  int ssfont = 0;
 
   nFonts = Fl::set_fonts("*");
   for (i = 0; i < nFonts; i++)
@@ -30,24 +30,17 @@ void GaugeCluster::_GaugeCluster() {
   }		
     
   this->box(FL_FLAT_BOX);
-  this->color(FL_BACKGROUND_COLOR);
-  this->selection_color(FL_BACKGROUND_COLOR);
+  this->color(0xA0A0A000);
+  this->selection_color(0x30303000);
   this->labeltype(FL_NO_LABEL);
   this->labelfont(0);
   this->labelsize(14);
   this->labelcolor(FL_FOREGROUND_COLOR);
   this->align(Fl_Align(FL_ALIGN_TOP));
   this->when(FL_WHEN_RELEASE);
-  g1 = new Gauge(0,400,400,0,8000);
-  oil_temp = new Fl_Value_Output(10,10,100,30);
-  oil_temp->align(FL_ALIGN_BOTTOM);
-  oil_temp->format("%5.1f");
-  oil_temp->color(0x00000000);
-  oil_temp->textcolor(0x00FF0000);
-  oil_temp->textfont(ssfont);
-  oil_temp->textsize(30);
-  oil_temp->value(178.8);
-  oil_temp->label("Oil Temp");
+  g1 = new Gauge(30,20,360,0,8000);
+  oil_temp = new SevenSegment(420,10,"Oil Temp");
+  oil_temp->setValue(123.543);
   clear_border();
   end();
 }
