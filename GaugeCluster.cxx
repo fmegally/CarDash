@@ -30,7 +30,7 @@ void GaugeCluster::_GaugeCluster() {
   }		
     
   this->box(FL_FLAT_BOX);
-  this->color(0xA0A0A000);
+  this->color(0x15151500);
   this->selection_color(0x30303000);
   this->labeltype(FL_NO_LABEL);
   this->labelfont(0);
@@ -41,6 +41,8 @@ void GaugeCluster::_GaugeCluster() {
   g1 = new Gauge(30,20,360,0,8000);
   oil_temp = new SevenSegment(420,10,"Oil Temp");
   oil_temp->setValue(123.543);
+  oil_temp->setLabelBackground(0x15151500);
+  oil_temp->setLabelTextColor(0xFFFFFF00);
   clear_border();
   end();
 }
