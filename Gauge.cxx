@@ -50,10 +50,10 @@ void Gauge::draw() {
 	fl_pie(x(),y(),size,size,0,360);
 
 	fl_color(0xFF000000);
-	fl_pie(x()+0.5*size-0.325*size,y()+0.5*size - 0.325*size,size*0.65,size*0.65,5,-45);
+	fl_pie(x()+0.5*size-0.44*size,y()+0.5*size - 0.44*size,size*0.88,size*0.88,5,-45);
 
 	fl_color(0x00000000);
-	fl_pie(x()+0.5*size-0.30*size,y()+0.5*size - 0.30*size,size*0.6,size*0.6,5,-45);
+	fl_pie(x()+0.5*size-0.4*size,y()+0.5*size - 0.4*size,size*0.8,size*0.8,5,-45);
 
 	//draw needle pivot
 	fl_color(0x50505000);

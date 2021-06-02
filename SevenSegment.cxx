@@ -29,7 +29,7 @@ SevenSegment::SevenSegment(int X, int Y, const char *L)
 	display->labelcolor(0xFF000000);
 	display->label("12.4");
 	display->labelsize(30);
-	const Fl_Font sseg = getFontNumber("Seven Segment");
+	const Fl_Font sseg = getFontNumber("DSEG7 Classic Mini");
 	display->labelfont(sseg);
 	display->align(FL_ALIGN_RIGHT | FL_ALIGN_INSIDE);
 

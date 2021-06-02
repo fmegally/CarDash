@@ -41,6 +41,7 @@ void GaugeCluster::_GaugeCluster() {
   g1 = new Gauge(30,20,360,0,8000);
   oil_temp = new SevenSegment(420,10,"Oil Temp");
   oil_temp->setValue(123.543);
+  oil_temp->setDisplayTextColor(0x00FF0000);
   oil_temp->setLabelBackground(0x15151500);
   oil_temp->setLabelTextColor(0xFFFFFF00);
   clear_border();

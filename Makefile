@@ -1,21 +1,19 @@
-ODIR = ./build
-IDIR = ./include
-SDIR = ./src
-
 CC = g++
-CFLAGS = -Wall -I$(IDIR)
+CFLAGS = -Wall 
 LIBS = -lm
-OBJF = main.o uart.o message.o ringbuffer.o gpio.o chksum.o timer.o
-OBJ = $(patsubst %,$(ODIR)/%, $(OBJF))
-TARGET = main
+OBJ = main.o Gauge.o GaugeCluster.o SevenSegment.o util.o
+TARGET = main.out
 
-$(ODIR)/$(TARGET).bin: $(OBJ)
-	$(CC) -o $@ $(OBJ) -mmcu=$(MCU) $(CFLAGS)
+FLTK_LDFLAGS = `fltk-config --ldflags`
+FLTK_CXXFLAGS = `fltk-config --cxxflags`
 
-$(ODIR)/%.o: $(SDIR)/%.c
-	$(CC) -c -o $@ $< -mmcu=$(MCU) $(CFLAGS)
+$(TARGET):$(OBJ)
+	$(CC) -o $@ $(OBJ) $(FLTK_LDFLAGS)
+
+%.o:%.cxx
+	$(CC) -c -o $@ $< $(CXXFLAGS)
 
 .PHONY:clean
 clean:
 	echo "Removing build files .."
-	@bash -c 'rm $(ODIR)/{*.o,*.bin} && echo "Clean complete !"'
+	@bash -c 'rm {*.o,*.out} && echo "Clean complete !"'
