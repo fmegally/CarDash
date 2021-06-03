@@ -67,7 +67,6 @@ void SevenSegment::setValue (double value)
 {
 	char buffer[24];
 	sprintf(buffer,"%.1f",value);
-	printf("%s\n",buffer);
 	display->copy_label(buffer);
 
 	return;

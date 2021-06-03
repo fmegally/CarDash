@@ -6,6 +6,12 @@
 #include "Gauge.h"
 #include "util.h"
 
+static
+void drawCircle(double xc, double yc, double radius, double a1=0, double a2 = 360)
+{
+	return;
+}
+
 Gauge::Gauge(int x, int y, int size, double lower, double upper)
   : Fl_Widget(x, y, size, size, 0) {
 	this->box(FL_FLAT_BOX);
@@ -42,18 +48,28 @@ void Gauge::disableMajorLabels(void)
 }
 
 
-void Gauge::draw() {
+void Gauge::draw()
+{
 	int needlePivotSize = size / 8;
 	
 	//draw background
-	fl_color(0x00000000);
+	fl_color(0x05050500);
 	fl_pie(x(),y(),size,size,0,360);
 
 	fl_color(0xFF000000);
-	fl_pie(x()+0.5*size-0.44*size,y()+0.5*size - 0.44*size,size*0.88,size*0.88,5,-45);
+	fl_pie(floor(x()+0.5*size - 0.39*size),
+               floor(y()+0.5*size - 0.39*size),
+               floor(size*0.78),
+               floor(size*0.78),
+               5,
+               -45);
 
-	fl_color(0x00000000);
-	fl_pie(x()+0.5*size-0.4*size,y()+0.5*size - 0.4*size,size*0.8,size*0.8,5,-45);
+	fl_color(0x15151500);
+	fl_pie(floor(x()+0.5*size - 0.35*size),
+               floor(y()+0.5*size - 0.35*size),
+               floor(size*0.7),
+               floor(size*0.7),
+               6,-46);
 
 	//draw needle pivot
 	fl_color(0x50505000);
