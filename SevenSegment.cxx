@@ -21,21 +21,23 @@ Fl_Font getFontNumber(const char *fontName)
 SevenSegment::SevenSegment(int X, int Y, const char *L)
 	: Fl_Group(X,Y,120,80)
 {
-	display = new Fl_Box(X,Y,120,45,"120.6");
-	label = new Fl_Box(X,Y + 45,120,35,L);
+	const Fl_Font sseg = getFontNumber("DSEG7 Classic Mini");
+
+	label = new Fl_Box(X,Y,60,35,L);
+	display = new Fl_Box(X+60,Y,100,35,"120.6");
+	display->labelfont(sseg);
 
 	display->box(FL_FLAT_BOX);
 	display->color(0x00000000);
 	display->labelcolor(0xFF000000);
 	display->label("12.4");
-	display->labelsize(30);
-	const Fl_Font sseg = getFontNumber("DSEG7 Classic Mini");
-	display->labelfont(sseg);
+	display->labelsize(20);
 	display->align(FL_ALIGN_RIGHT | FL_ALIGN_INSIDE);
 
 	label->box(FL_FLAT_BOX);
 	label->color(FL_BACKGROUND_COLOR);
-	label->align(FL_ALIGN_CENTER | FL_ALIGN_INSIDE);
+	label->align(FL_ALIGN_LEFT | FL_ALIGN_INSIDE);
+	label->labelsize(10);
 	end();
 }
 
@@ -66,7 +68,7 @@ void SevenSegment::setLabelTextColor(Fl_Color c)
 void SevenSegment::setValue (double value)
 {
 	char buffer[24];
-	sprintf(buffer,"%.1f",value);
+	sprintf(buffer,"%05.1f",value);
 	display->copy_label(buffer);
 
 	return;

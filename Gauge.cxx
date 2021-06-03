@@ -9,6 +9,27 @@
 static
 void drawCircle(double xc, double yc, double radius, double a1=0, double a2 = 360)
 {
+	fl_arc(xc - radius,
+	       yc - radius,
+	       2 * radius,
+	       2 * radius,
+	       a1,
+	       a2);
+
+	return;
+}
+
+
+static
+void drawDisk(double xc, double yc, double radius, double a1=0, double a2 = 360)
+{
+	fl_pie(xc - radius,
+	       yc - radius,
+	       2 * radius,
+	       2 * radius,
+	       a1,
+	       a2);
+
 	return;
 }
 
@@ -53,23 +74,8 @@ void Gauge::draw()
 	int needlePivotSize = size / 8;
 	
 	//draw background
-	fl_color(0x05050500);
-	fl_pie(x(),y(),size,size,0,360);
-
-	fl_color(0xFF000000);
-	fl_pie(floor(x()+0.5*size - 0.39*size),
-               floor(y()+0.5*size - 0.39*size),
-               floor(size*0.78),
-               floor(size*0.78),
-               5,
-               -45);
-
 	fl_color(0x15151500);
-	fl_pie(floor(x()+0.5*size - 0.35*size),
-               floor(y()+0.5*size - 0.35*size),
-               floor(size*0.7),
-               floor(size*0.7),
-               6,-46);
+	drawDisk(x()+0.5*size,y()+0.5*size,0.5*size);
 
 	//draw needle pivot
 	fl_color(0x50505000);
@@ -154,4 +160,6 @@ void Gauge::draw()
 	fl_end_polygon();
 
 	fl_pop_matrix();
+	fl_line_style(FL_SOLID,10);
+	drawCircle(100,100,50,0,180);
 }
