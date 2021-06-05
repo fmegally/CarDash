@@ -13,5 +13,9 @@ public:
   GaugeCluster();
   Gauge* g1; 
   SevenSegment* oil_temp;
+  SevenSegment* oil_pres;
+  SevenSegment* cool_temp;
+  SevenSegment* fuel_pres;
+  SevenSegment* imap;
   
 };

@@ -31,13 +31,44 @@ void GaugeCluster::_GaugeCluster()
   this->labelcolor(FL_FOREGROUND_COLOR);
   this->align(Fl_Align(FL_ALIGN_TOP));
   this->when(FL_WHEN_RELEASE);
-  g1 = new Gauge(30,20,360,0,8000);
-  oil_temp = new SevenSegment(420,10,"Oil\nTemp");
+
+  g1 = new Gauge(200,20,310,0,8000);
+
+  oil_temp = new SevenSegment(5,10,"Oil\nTemp");
   oil_temp->setValue(23.5);
   oil_temp->setDisplayBackground(0x15151500);
   oil_temp->setDisplayTextColor(0x00FF0000);
   oil_temp->setLabelBackground(0x15151500);
   oil_temp->setLabelTextColor(0xF0F0F000);
+
+  oil_pres = new SevenSegment(5,60,"Oil\nPress.");
+  oil_pres->setValue(23.5);
+  oil_pres->setDisplayBackground(0x15151500);
+  oil_pres->setDisplayTextColor(0x00FF0000);
+  oil_pres->setLabelBackground(0x15151500);
+  oil_pres->setLabelTextColor(0xF0F0F000);
+
+  cool_temp = new SevenSegment(5,110,"Coolant\nTemp");
+  cool_temp->setValue(23.5);
+  cool_temp->setDisplayBackground(0x15151500);
+  cool_temp->setDisplayTextColor(0x00FF0000);
+  cool_temp->setLabelBackground(0x15151500);
+  cool_temp->setLabelTextColor(0xF0F0F000);
+
+  fuel_pres = new SevenSegment(5,160,"Fuel\nPress.");
+  fuel_pres->setValue(23.5);
+  fuel_pres->setDisplayBackground(0x15151500);
+  fuel_pres->setDisplayTextColor(0x00FF0000);
+  fuel_pres->setLabelBackground(0x15151500);
+  fuel_pres->setLabelTextColor(0xF0F0F000);
+
+  imap = new SevenSegment(5,210,"IMAP");
+  imap->setValue(23.5);
+  imap->setDisplayBackground(0x15151500);
+  imap->setDisplayTextColor(0x00FF0000);
+  imap->setLabelBackground(0x15151500);
+  imap->setLabelTextColor(0xF0F0F000);
+
   clear_border();
   end();
 }

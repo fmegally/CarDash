@@ -21,6 +21,11 @@ private:
   char *label;
 
   int size;
+  int padding;
+  double maxLabelRadius;
+  double majorTickRadius;
+  double minorTickRadius;
+  double needleRadius;
   double radius;
   double angStart, angEnd;
   double valueMin, valueMax;
@@ -30,6 +35,12 @@ private:
   std::vector<double> minorTicks;
 
   bool labelMajorTicks;
+
+  Fl_Color backgroundColor;
+  Fl_Color majorTickColor;
+  Fl_Color minorTickColor;
+  Fl_Color needleColor;
+  Fl_Color labelColor;
 };
 
 #endif
