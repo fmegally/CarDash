@@ -83,7 +83,6 @@ void Gauge::disableMajorLabels(void)
 	return;
 }
 
-
 void Gauge::draw()
 {
 	int needlePivotSize = size / 8;
@@ -113,11 +112,12 @@ void Gauge::draw()
 	for (int i = 0;i <= (majorTicks.size() - 1) * 5; i++)
 	{
 		fl_begin_line();
-		fl_vertex(0.9*radius,0);
-		fl_vertex(0.95*radius,0);
+		fl_vertex(baseTickRadius,0);
+		fl_vertex(minorTickRadius,0);
 		fl_end_line();
 		fl_rotate(-((angStart -  angEnd)/((majorTicks.size() - 1)*5)));
 	}
+
 	fl_pop_matrix();
 	
 	//draw major ticks and labels
@@ -136,21 +136,18 @@ void Gauge::draw()
 		{
 			char buff[10];
 			int dx, dy;
-			sprintf(buff,"%.0f",i/1000);
+			sprintf(buff,"%.0f",i);
 			fl_measure(buff,dx, dy);
-			double dR = 1.25 * sqrt(pow(0.5*dx,2) + pow(0.5*dy,2));
+			double dR = 1.1* sqrt(pow(0.5*dx,2) + pow(0.5*dy,2));
 			double a = map (i, valueMin, valueMax ,angStart ,angEnd)*(M_PI / 180);
-			double temp = (0.5 *size) - (2 * dR);
-			radius = temp < radius ? temp : radius;
-			//printf("dR = %.0f, a = %.4f, temp = %.0f, radius = %.0f\n",dR,a,temp,radius);
-			fl_draw(buff, x() + XCent+((dR + radius)*cos(a))-(0.5 *dx), y() + YCent-((dR + radius)*sin(a)) + (0.5 * dy));
+			fl_draw(buff, x() + XCent+((dR + majorTickRadius)*cos(a))-(0.5 *dx), y() + YCent-((dR + majorTickRadius)*sin(a)) + (0.5 * dy));
 		} else {
-			radius = 0.5 * size;
+			majorTickRadius = 0.5 * (size - padding);
 		}
 
 		fl_begin_line();
-			fl_vertex(0.9*radius,0);
-			fl_vertex(0.98*radius,0);
+			fl_vertex(baseTickRadius,0);
+			fl_vertex(majorTickRadius,0);
 		fl_end_line();
 		fl_rotate(-((angStart -  angEnd)/(majorTicks.size()- 1)));
 	}
@@ -166,10 +163,10 @@ void Gauge::draw()
 	fl_rotate(map(value,valueMin,valueMax,angStart,angEnd));
 
 	fl_begin_polygon();
-		fl_vertex(radius * 0.85, radius * 0.005);
-		fl_vertex(-0.08 * radius, radius * 0.03);
-		fl_vertex(-0.08 * radius,-radius * 0.03) ;
-		fl_vertex(radius * 0.85,-radius * 0.005);
+		fl_vertex(needleRadius, needleRadius * 0.005);
+		fl_vertex(-0.08 * needleRadius, needleRadius * 0.03);
+		fl_vertex(-0.08 * needleRadius,-needleRadius * 0.03) ;
+		fl_vertex(needleRadius,-needleRadius * 0.005);
 	fl_end_polygon();
 
 	fl_pop_matrix();
