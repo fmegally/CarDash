@@ -69,6 +69,8 @@ void GaugeCluster::_GaugeCluster()
   imap->setLabelBackground(0x15151500);
   imap->setLabelTextColor(0xF0F0F000);
 
+  bar1 = new Bar(400,100,300,60,0,100,0.5);
   clear_border();
   end();
 }
+

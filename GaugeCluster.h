@@ -1,4 +1,5 @@
 #include "Gauge.h"
+#include "Bar.h"
 #include <string.h>
 #include <FL/Fl.H>
 #include <FL/Fl_Double_Window.H>
@@ -17,5 +18,6 @@ public:
   SevenSegment* cool_temp;
   SevenSegment* fuel_pres;
   SevenSegment* imap;
+  Bar* bar1;
   
 };

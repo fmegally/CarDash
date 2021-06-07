@@ -7,11 +7,15 @@
 
 class Bar : public Fl_Group {
 	public:
-		Bar(int X, int Y, int W, int H, double lower, double upper, int n = 16, double r = 0.5);
+		Bar(int X, int Y, int W, int H, double lower, double upper, double r = 0.5);
 		double value;
 	protected:
 		void draw();
 	private:
+		int borderSize;
+		Fl_Color borderColor;
+		int nBars;
+		int barH, barW;
 		double padding;
 		double bw;
 		double dw;

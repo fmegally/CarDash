@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall 
 LIBS = -lm
-OBJ = main.o Gauge.o GaugeCluster.o SevenSegment.o util.o
+OBJ = main.o Gauge.o GaugeCluster.o SevenSegment.o util.o Bar.o
 TARGET = main.out
 
 FLTK_LDFLAGS = `fltk-config --ldflags`
