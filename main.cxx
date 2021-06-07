@@ -15,7 +15,7 @@ int main(int argc, char* arv[])
 	int i = 0;
 	while ( i < 8000 )
 	{
-		mm.g1->value = i;
+		mm.g1->value =((double) i)/1000.0;
 		i += 1;
 		mm.redraw();
 		Fl::wait();

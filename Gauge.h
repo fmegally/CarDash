@@ -25,6 +25,7 @@ private:
   double maxLabelRadius;
   double majorTickRadius;
   double minorTickRadius;
+  double baseTickRadius;
   double needleRadius;
   double radius;
   double angStart, angEnd;

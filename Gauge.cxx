@@ -50,7 +50,9 @@ Gauge::Gauge(int x, int y, int size, double lower, double upper)
 
 	this->XCent = size / 2;
 	this->YCent = size / 2;
-	this->majorTicks = range<double>(lower,upper,1000.0,true);
+	this->majorTicks = range<double>(lower,upper,1,true);
+
+	fl_font(FL_COURIER,16);	
 
 	maxLabelRadius = 0;
 	for (auto i: majorTicks)
@@ -60,14 +62,21 @@ Gauge::Gauge(int x, int y, int size, double lower, double upper)
 		sprintf(buff,"%.0f",i);
 		fl_measure(buff,tw, th);
 		double tR = 1.1 * sqrt(pow(0.5*tw,2) + pow(0.5*th,2));
-		maxLabelRadius = dR > maxLabelRadius ? tR : maxLabelRadius;
+		std::cout << buff << "," << tw << "," << th << "," << tR << std::endl;
+		maxLabelRadius = tR > maxLabelRadius ? tR : maxLabelRadius;
 	}
+	std::cout << maxLabelRadius << std::endl;
 	this->padding = 0;
-	this->majorTickRadius = 0.5 * size - padding - 2 * maxLabelRadius;
-        this->minorTickRadius = 0.95 * majorTickRadius;
-	this->baseTickRadius = 0.9 * majorTickRadius;
-	this->needleRadius = 0.98 * baseTickRadius;
+	this->baseTickRadius = 0.5 * size - padding;
+	this->majorTickRadius = 0.9 * baseTickRadius;
+        this->minorTickRadius = 0.95 * baseTickRadius;
+	this->needleRadius = 0.98 * majorTickRadius;
 	this->labelMajorTicks = true;
+	this->backgroundColor = 0x15151500;
+	this->majorTickColor = 0xFFB00000;
+	this->minorTickColor = 0xFFB00000;
+	this->needleColor = 0xFFFFFF00;
+	this->labelColor = 0xFFFF0000;
 	return;
 }
 
@@ -89,17 +98,19 @@ void Gauge::draw()
 	
 	//draw background
 	fl_color(backgroundColor);
-	drawDisk(x()+0.5*size,y()+0.5*size,0.5*size);
+	drawDisk(x()+0.5*size,y()+0.5*size,baseTickRadius);
 
 	//draw needle pivot
 	fl_color(needleColor);
 	fl_line_style(FL_SOLID,1);
+	/*
 	fl_pie( x() + XCent - (needlePivotSize / 2),
 	        y() +YCent - (needlePivotSize / 2),
 		needlePivotSize,
 		needlePivotSize,
 		0,
 		360);
+	*/
 
 	//draw minor ticks
 	fl_push_matrix();
@@ -107,13 +118,13 @@ void Gauge::draw()
 	fl_translate(XCent, YCent);
 	fl_translate(x(),y());
 	fl_rotate(angStart);
-	fl_line_style(FL_SOLID,2);
+	fl_line_style(FL_SOLID,1);
 
 	for (int i = 0;i <= (majorTicks.size() - 1) * 5; i++)
 	{
 		fl_begin_line();
-		fl_vertex(baseTickRadius,0);
 		fl_vertex(minorTickRadius,0);
+		fl_vertex(baseTickRadius,0);
 		fl_end_line();
 		fl_rotate(-((angStart -  angEnd)/((majorTicks.size() - 1)*5)));
 	}
@@ -122,7 +133,7 @@ void Gauge::draw()
 	
 	//draw major ticks and labels
 	fl_font(FL_COURIER,16);	
-	fl_line_style(FL_SOLID,3);
+	fl_line_style(FL_SOLID,2);
 
 	fl_push_matrix();
 	fl_color(majorTickColor);
@@ -140,14 +151,14 @@ void Gauge::draw()
 			fl_measure(buff,dx, dy);
 			double dR = 1.1* sqrt(pow(0.5*dx,2) + pow(0.5*dy,2));
 			double a = map (i, valueMin, valueMax ,angStart ,angEnd)*(M_PI / 180);
-			fl_draw(buff, x() + XCent+((dR + majorTickRadius)*cos(a))-(0.5 *dx), y() + YCent-((dR + majorTickRadius)*sin(a)) + (0.5 * dy));
+			fl_draw(buff, x() + XCent+((majorTickRadius - dR)*cos(a))-(0.5 *dx), y() + YCent-((majorTickRadius - dR)*sin(a)) + (0.5 * dy));
 		} else {
 			majorTickRadius = 0.5 * (size - padding);
 		}
 
 		fl_begin_line();
-			fl_vertex(baseTickRadius,0);
 			fl_vertex(majorTickRadius,0);
+			fl_vertex(baseTickRadius,0);
 		fl_end_line();
 		fl_rotate(-((angStart -  angEnd)/(majorTicks.size()- 1)));
 	}
@@ -163,10 +174,10 @@ void Gauge::draw()
 	fl_rotate(map(value,valueMin,valueMax,angStart,angEnd));
 
 	fl_begin_polygon();
-		fl_vertex(needleRadius, needleRadius * 0.005);
-		fl_vertex(-0.08 * needleRadius, needleRadius * 0.03);
-		fl_vertex(-0.08 * needleRadius,-needleRadius * 0.03) ;
-		fl_vertex(needleRadius,-needleRadius * 0.005);
+		fl_vertex(needleRadius, needleRadius * 0.01);
+		fl_vertex(0.5 * needleRadius, needleRadius * 0.04);
+		fl_vertex(0.5 * needleRadius,-needleRadius * 0.04) ;
+		fl_vertex(needleRadius,-needleRadius * 0.01);
 	fl_end_polygon();
 
 	fl_pop_matrix();
