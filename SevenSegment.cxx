@@ -1,4 +1,5 @@
 #include <string.h>
+#include <iostream>
 #include <stdio.h>
 #include "SevenSegment.h"
 
@@ -19,19 +20,24 @@ Fl_Font getFontNumber(const char *fontName)
 }
 
 SevenSegment::SevenSegment(int X, int Y, const char *L)
-	: Fl_Group(X,Y,140,70)
+	: Fl_Group(X,Y,140,60)
 {
 	const Fl_Font sseg = getFontNumber("DSEG7 Classic Mini");
 
-	label = new Fl_Box(X,Y,60,70,L);
-	display = new Fl_Box(X+60,Y,80,70,"120.6");
-	display->labelfont(sseg);
+	box(FL_BORDER_FRAME);
+	color(0xFFB00000);
+
+	label = new Fl_Box(X+1,Y+1,60,50,L);
+	display = new Fl_Box(X+60,Y,80,50,"000");
+
+	std::cout << sseg << std::endl;
+	display->labelfont(FL_COURIER);
 
 	display->box(FL_BORDER_FRAME);
-	display->color(0x00000000);
+	display->color(0xFFFFFF00);
 	display->labelcolor(0xFF000000);
-	display->label("12.4");
-	display->labelsize(24);
+	display->label("000");
+	display->labelsize(32);
 	display->align(FL_ALIGN_RIGHT | FL_ALIGN_INSIDE);
 
 	label->box(FL_FLAT_BOX);

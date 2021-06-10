@@ -73,8 +73,10 @@ Gauge::Gauge(int x, int y, int size, double lower, double upper)
 	this->needleRadius = 0.98 * majorTickRadius;
 	this->labelMajorTicks = true;
 	this->backgroundColor = 0x15151500;
-	this->majorTickColor = 0xFFB00000;
-	this->minorTickColor = 0xFFB00000;
+	this->majorTickColor = 0x36F58000;
+	//this->majorTickColor = 0xFFB00000;
+	this->minorTickColor = 0x36F58000;
+	//this->minorTickColor = 0xFFB00000;
 	this->needleColor = 0xFFFFFF00;
 	this->labelColor = 0xFFFF0000;
 	return;
@@ -120,13 +122,13 @@ void Gauge::draw()
 	fl_rotate(angStart);
 	fl_line_style(FL_SOLID,1);
 
-	for (int i = 0;i <= (majorTicks.size() - 1) * 5; i++)
+	for (int i = 0;i <= (majorTicks.size() - 1) * 10; i++)
 	{
 		fl_begin_line();
 		fl_vertex(minorTickRadius,0);
 		fl_vertex(baseTickRadius,0);
 		fl_end_line();
-		fl_rotate(-((angStart -  angEnd)/((majorTicks.size() - 1)*5)));
+		fl_rotate(-((angStart -  angEnd)/((majorTicks.size() - 1)*10)));
 	}
 
 	fl_pop_matrix();

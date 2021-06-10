@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <Fl/Fl.H>
+#include <FL/Fl.H>
 #include <unistd.h>
 
 #include "Gauge.h"

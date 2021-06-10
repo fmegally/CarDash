@@ -17,6 +17,14 @@ Bar::Bar(int X, int Y, int W, int H, double lower, double upper, double r)
 		this->value = 0;
 		this->bw = floor((W - 2*padding)/(nBars + nBars*r - r));
 		this->dw = floor(bw * (1 + r));
+		rangeBoundaries[0] = 0.0;
+		rangeBoundaries[1] = 0.7;
+		rangeBoundaries[2] = 0.9;
+
+		rangeColors[0] = 0x36f58000;
+		rangeColors[1] = 0xf8b45400;
+		rangeColors[2] = 0xe5665900;
+		
 		return;
 }
 
@@ -26,7 +34,20 @@ void Bar::draw()
 	int i;
 	for(i=0;i*dw < barW;i++)
 	{
-		fl_rectf(x() + (i * dw),y(),bw,barH,0x00FF0000);
+		double t = i*dw / barW;
+		Fl_Color temp_color;
+		if(t <= rangeBoundaries[1])
+		{
+			temp_color = rangeColors[0];
+		} else if (t > rangeBoundaries[1] && t <= rangeBoundaries[2])
+		{
+			temp_color = rangeColors[1];
+		} else if (t > rangeBoundaries[2])
+		{
+			temp_color = rangeColors[2];
+		}
+
+		fl_rectf(x() + (i * dw),y(),bw,barH,temp_color);
 	};
 
 	if (borderSize > 0)
