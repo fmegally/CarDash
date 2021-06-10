@@ -35,19 +35,19 @@ void Bar::draw()
 	for(i=0;i*dw < barW;i++)
 	{
 		double t = i*dw / barW;
-		Fl_Color temp_color;
+		Fl_Color curr_color;
 		if(t <= rangeBoundaries[1])
 		{
-			temp_color = rangeColors[0];
+			curr_color = rangeColors[0];
 		} else if (t > rangeBoundaries[1] && t <= rangeBoundaries[2])
 		{
-			temp_color = rangeColors[1];
+			curr_color = rangeColors[1];
 		} else if (t > rangeBoundaries[2])
 		{
-			temp_color = rangeColors[2];
+			curr_color = rangeColors[2];
 		}
 
-		fl_rectf(x() + (i * dw),y(),bw,barH,temp_color);
+		fl_rectf(x() + (i * dw),y(),bw,barH,curr_color);
 	};
 
 	if (borderSize > 0)
