@@ -56,6 +56,7 @@ void Bar::draw()
 		fl_line_style(FL_SOLID,borderSize);
 		fl_rect(x(),y(),barW,barH);
 	}
+	fl_line_style(0);
 }
 
 

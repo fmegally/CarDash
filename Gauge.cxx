@@ -64,7 +64,6 @@ Gauge::Gauge(int x, int y, int size, double lower, double upper)
 		double tR = 1.1 * sqrt(pow(0.5*tw,2) + pow(0.5*th,2));
 		maxLabelRadius = tR > maxLabelRadius ? tR : maxLabelRadius;
 	}
-	std::cout << maxLabelRadius << std::endl;
 	this->padding = 0;
 	this->baseTickRadius = 0.5 * size - padding;
 	this->majorTickRadius = 0.9 * baseTickRadius;
