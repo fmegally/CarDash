@@ -24,26 +24,21 @@ SevenSegment::SevenSegment(int X, int Y, const char *L)
 {
 	const Fl_Font sseg = getFontNumber("DSEG7 Classic Mini");
 
-	box(FL_BORDER_FRAME);
-	color(0xFFB00000);
-
 	label = new Fl_Box(X+1,Y+1,60,50,L);
 	display = new Fl_Box(X+60,Y,80,50,"000");
+	
+	label->box(FL_BORDER_FRAME);
+	label->color(FL_BACKGROUND_COLOR);
+	label->align(FL_ALIGN_LEFT | FL_ALIGN_INSIDE);
+	label->labelsize(12);
 
-	std::cout << sseg << std::endl;
-	display->labelfont(FL_COURIER);
-
-	display->box(FL_BORDER_FRAME);
 	display->color(0xFFFFFF00);
+	display->box(FL_BORDER_FRAME);
+	display->labelfont(FL_COURIER);
 	display->labelcolor(0xFF000000);
 	display->label("000");
 	display->labelsize(32);
 	display->align(FL_ALIGN_RIGHT | FL_ALIGN_INSIDE);
-
-	label->box(FL_FLAT_BOX);
-	label->color(FL_BACKGROUND_COLOR);
-	label->align(FL_ALIGN_LEFT | FL_ALIGN_INSIDE);
-	label->labelsize(12);
 	end();
 }
 

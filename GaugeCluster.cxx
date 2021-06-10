@@ -33,14 +33,14 @@ void GaugeCluster::_GaugeCluster()
   this->align(Fl_Align(FL_ALIGN_TOP));
   this->when(FL_WHEN_RELEASE);
 
-  g1 = new Gauge(200,0,310,0,8);
+
 
   oil_temp = new SevenSegment(5,10,"Oil\nTemp");
   oil_temp->setValue(000.0);
-  oil_temp->setDisplayBackground(0x15151500);
-  oil_temp->setDisplayTextColor(0x36f58000);
-  oil_temp->setLabelBackground(0x15151500);
-  oil_temp->setLabelTextColor(0xF0F0F000);
+//  oil_temp->setDisplayBackground(0x15151500);
+//  oil_temp->setDisplayTextColor(0x36f58000);
+//  oil_temp->setLabelBackground(0x15151500);
+//  oil_temp->setLabelTextColor(0xF0F0F000);
 
   /*
   oil_pres = new SevenSegment(5,60,"Oil\nPress.");
@@ -72,7 +72,7 @@ void GaugeCluster::_GaugeCluster()
   imap->setLabelTextColor(0xF0F0F000);
 */
   //bar1 = new Bar(400,100,100,15,0,100,0.5);
-  clear_border();
+  g1 = new Gauge(200,0,310,0,8);
   end();
 }
 
