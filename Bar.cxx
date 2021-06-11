@@ -17,13 +17,13 @@ Bar::Bar(int X, int Y, int W, int H, double lower, double upper, double r)
 		this->value = 0;
 		this->bw = floor((W - 2*padding)/(nBars + nBars*r - r));
 		this->dw = floor(bw * (1 + r));
-		rangeBoundaries[0] = 0.0;
-		rangeBoundaries[1] = 0.7;
-		rangeBoundaries[2] = 0.9;
+//		rangeBoundaries[0] = 0.0;
+//		rangeBoundaries[1] = 0.7;
+//		rangeBoundaries[2] = 0.9;
 
-		rangeColors[0] = 0x36f58000;
-		rangeColors[1] = 0xf8b45400;
-		rangeColors[2] = 0xe5665900;
+//		rangeColors[0] = 0x36f58000;
+//		rangeColors[1] = 0xf8b45400;
+//		rangeColors[2] = 0xe5665900;
 		
 		return;
 }
@@ -48,6 +48,7 @@ void Bar::draw()
 		}
 
 		fl_rectf(x() + (i * dw),y(),bw,barH,curr_color);
+		std::cout << curr_color << std::endl;;
 	};
 
 	if (borderSize > 0)

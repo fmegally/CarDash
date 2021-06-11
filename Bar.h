@@ -19,8 +19,8 @@ class Bar : public Fl_Group {
 		double padding;
 		double bw;
 		double dw;
-		double rangeBoundaries[3];
-		Fl_Color rangeColors[3];
+		double rangeBoundaries[3] = {0.0, 0.7, 0.9};
+		Fl_Color rangeColors[3]  = {0x36f58000, 0xf8b45400, 0xe5665900};
 		Fl_Box *bar;
 };
 

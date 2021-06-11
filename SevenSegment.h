@@ -8,6 +8,7 @@
 class SevenSegment : public Fl_Group {
 	public:
 		SevenSegment(int X, int Y, const char *label = 0);
+		~SevenSegment();
 		void setValue(double value);
 		void setDisplayBackground(Fl_Color c);
 		void setDisplayTextColor(Fl_Color c);

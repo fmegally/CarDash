@@ -8,7 +8,7 @@
 
 class Gauge : public Fl_Widget {
 public:
-  Gauge(int x, int y, int size, double lower, double upper);
+  Gauge(int x, int y, int size, double lower, double upper,double step);
   void setLabel(const char *lbl);
   void enableMajorLabels(void);
   void disableMajorLabels(void);
@@ -30,6 +30,7 @@ private:
   double radius;
   double angStart, angEnd;
   double valueMin, valueMax;
+  double step;
   double *subRange;
 
   std::vector<double> majorTicks;

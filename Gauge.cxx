@@ -33,7 +33,7 @@ void drawDisk(double xc, double yc, double radius, double a1=0, double a2 = 360)
 	return;
 }
 
-Gauge::Gauge(int x, int y, int size, double lower, double upper)
+Gauge::Gauge(int x, int y, int size, double lower, double upper,double step)
   : Fl_Widget(x, y, size, size, 0) {
 	this->box(FL_FLAT_BOX);
 	this->labeltype(FL_NO_LABEL);
@@ -44,13 +44,14 @@ Gauge::Gauge(int x, int y, int size, double lower, double upper)
 	this->valueMax = upper;
 	this->angStart = 225.0;
 	this->angEnd = -45.0;
+	this->step = step;
 		
 
 	this->radius = 0.5 * size;
 
 	this->XCent = size / 2;
 	this->YCent = size / 2;
-	this->majorTicks = range<double>(lower,upper,1,true);
+	this->majorTicks = range<double>(lower,upper,step,true);
 
 	fl_font(FL_COURIER,16);	
 
