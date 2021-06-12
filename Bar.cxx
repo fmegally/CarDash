@@ -9,12 +9,14 @@ Bar::Bar(int X, int Y, int W, int H, double lower, double upper, double r)
 		this->labeltype(FL_NO_LABEL);
 		this->when(FL_WHEN_RELEASE);
 		this->nBars = 32;
+		this->lowerLimit = lower;
+		this->upperLimit = upper;
 		this->borderSize = -1;
 		this->borderColor = 0x00000000;
 		this->barH = H;
 		this->barW = W;
 		this->padding = 0;
-		this->value = 0;
+		this->value = 120;
 		this->bw = floor((W - 2*padding)/(nBars + nBars*r - r));
 		this->dw = floor(bw * (1 + r));
 //		rangeBoundaries[0] = 0.0;
@@ -30,12 +32,13 @@ Bar::Bar(int X, int Y, int W, int H, double lower, double upper, double r)
 
 void Bar::draw()
 {
-
 	int i;
-	for(i=0;i*dw < barW;i++)
+
+	for(i=0;i< floor((value/upperLimit) * nBars);i++)
 	{
 		double t = i*dw / barW;
 		Fl_Color curr_color;
+
 		if(t <= rangeBoundaries[1])
 		{
 			curr_color = rangeColors[0];
@@ -48,7 +51,6 @@ void Bar::draw()
 		}
 
 		fl_rectf(x() + (i * dw),y(),bw,barH,curr_color);
-		std::cout << curr_color << std::endl;;
 	};
 
 	if (borderSize > 0)
@@ -57,6 +59,7 @@ void Bar::draw()
 		fl_line_style(FL_SOLID,borderSize);
 		fl_rect(x(),y(),barW,barH);
 	}
+
 	fl_line_style(0);
 }
 
