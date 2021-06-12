@@ -37,7 +37,6 @@ void Bar::draw()
 	for(i=0;i< nBars;i++)
 	{
 		double t = (double)i / (double)nBars;
-		std::cout << t << std::endl;
 		Fl_Color curr_color;
 
 		if(t <= rangeBoundaries[1])
@@ -57,7 +56,6 @@ void Bar::draw()
 	for(i=0;i< floor((value/upperLimit) * nBars);i++)
 	{
 		double t = (double)i / (double)nBars;
-		std::cout << t << std::endl;
 		Fl_Color curr_color;
 
 		if(t <= rangeBoundaries[1])
