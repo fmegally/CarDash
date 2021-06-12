@@ -20,8 +20,8 @@ class Bar : public Fl_Group {
 		double lowerLimit, upperLimit;
 		double bw;
 		double dw;
-		double rangeBoundaries[3] = {0.0, 0.5, 0.9};
-		Fl_Color rangeColors[3]  = {0x36f58000, 0xf8b45400, 0xe5665900};
+		double rangeBoundaries[3] = {0.0, 0.26, 0.78};
+		Fl_Color rangeColors[3]  = {0xf8b45400, 0x36f58000, 0xe5665900};
 		Fl_Box *bar;
 };
 

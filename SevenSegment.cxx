@@ -24,7 +24,7 @@ SevenSegment::SevenSegment(int X, int Y, const char *L)
 {
 	const Fl_Font sseg = getFontNumber("DSEG7 Classic Mini");
 	box(FL_BORDER_FRAME);
-	color(0xFFB00000);
+	color(0x7F580000);
 
 	label = new Fl_Box(X+5,Y,60,40,L);
 	display = new Fl_Box(X+60,Y,80,40,"000");

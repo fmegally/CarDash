@@ -16,7 +16,7 @@ Bar::Bar(int X, int Y, int W, int H, double lower, double upper, double r)
 		this->barH = H;
 		this->barW = W;
 		this->padding = 0;
-		this->value = 120;
+		this->value = 10;
 		this->bw = floor((W - 2*padding)/(nBars + nBars*r - r));
 		this->dw = floor(bw * (1 + r));
 //		rangeBoundaries[0] = 0.0;
@@ -34,9 +34,30 @@ void Bar::draw()
 {
 	int i;
 
+	for(i=0;i< nBars;i++)
+	{
+		double t = (double)i / (double)nBars;
+		std::cout << t << std::endl;
+		Fl_Color curr_color;
+
+		if(t <= rangeBoundaries[1])
+		{
+			curr_color = 0x4a361900;
+		} else if (t > rangeBoundaries[1] && t <= rangeBoundaries[2])
+		{
+			curr_color = 0x0a311900;
+		} else if (t > rangeBoundaries[2])
+		{
+			curr_color = 0x441e1a00;
+		}
+
+		fl_rectf(x() + (i * dw),y(),bw,barH,curr_color);
+	};
+
 	for(i=0;i< floor((value/upperLimit) * nBars);i++)
 	{
-		double t = i*dw / barW;
+		double t = (double)i / (double)nBars;
+		std::cout << t << std::endl;
 		Fl_Color curr_color;
 
 		if(t <= rangeBoundaries[1])
