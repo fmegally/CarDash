@@ -9,6 +9,7 @@
 class Gauge : public Fl_Widget {
 public:
   Gauge(int x, int y, int size, double lower, double upper,double step);
+  ~Gauge();
   void setLabel(const char *lbl);
   void enableMajorLabels(void);
   void disableMajorLabels(void);

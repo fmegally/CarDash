@@ -19,6 +19,13 @@ void drawCircle(double xc, double yc, double radius, double a1=0, double a2 = 36
 	return;
 }
 
+void Gauge::setLabel(const char *lbl)
+{
+	if (this->label != NULL) delete this->label;
+	this->label = new char[strlen(lbl) + 1];	
+	return;
+}
+
 
 static
 void drawDisk(double xc, double yc, double radius, double a1=0, double a2 = 360)
@@ -45,6 +52,7 @@ Gauge::Gauge(int x, int y, int size, double lower, double upper,double step)
 	this->angStart = 225.0;
 	this->angEnd = -45.0;
 	this->step = step;
+	this->label = NULL;
 		
 
 	this->radius = 0.5 * size;
@@ -81,6 +89,12 @@ Gauge::Gauge(int x, int y, int size, double lower, double upper,double step)
 	return;
 }
 
+Gauge::~Gauge()
+{
+	delete this->label;
+	return;
+}
+
 void Gauge::enableMajorLabels(void)
 {
 	labelMajorTicks = true;
@@ -112,6 +126,10 @@ void Gauge::draw()
 		0,
 		360);
 	*/
+
+	//TODO Draw gauge label and units
+//	fl_font(FL_COURIER,24);
+	
 
 	//draw minor ticks
 	fl_push_matrix();
